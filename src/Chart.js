@@ -16,6 +16,7 @@ export default {
 
         response.body.forEach(function(element, index) {
             if (this.data.length < 100 ) {
+                console.log(element.Direction)
                 this.labels.push(index);
                 this.data.push(element.LastTorque);
             }
