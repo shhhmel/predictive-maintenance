@@ -15,7 +15,7 @@ export default {
         console.log('this.data.length', this.data.length)
 
         response.body.forEach(function(element, index) {
-            if (this.data.length < 100 ) {
+            if (this.data.length < 100 && element.Direction === this.direction ) {
                 console.log(element.Direction)
                 this.labels.push(index);
                 this.data.push(element.LastTorque);
@@ -33,7 +33,7 @@ export default {
 
         console.log('this.data.length', this.data.length)
 
-        this.renderChart(this.someData, {responsive: true, maintainAspectRatio: false})
+        this.renderChart(this.someData, {responsive: true, maintainAspectRatio: true})
 
         console.log('someData', this.someData);
     }, response => {
