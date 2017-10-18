@@ -12,13 +12,9 @@ export default {
   },
   mounted() {
     this.$http.get('http://wb-predictivemaintenance-api.prsp7vkew2.eu-central-1.elasticbeanstalk.com/api/TorqueValues').then(response => {
-        console.log('this.data.length', this.data.length)
-        console.log('direction', this.direction)
         let count = 0;
-
         response.body.forEach(function(element) {
             if (element.Direction == this.direction && count < 100 && element.AverageTorque) {
-                console.log(element)
                 this.labels.push(count);
                 this.data.push(element.AverageTorque);
                 count++;
@@ -34,11 +30,14 @@ export default {
             }]
         }
 
-        console.log('this.data.length', this.data.length)
-
-        this.renderChart(this.someData, {responsive: true})
-
-        console.log('someData', this.someData);
+        this.renderChart(this.someData, {
+            responsive: true,
+            scales: {
+            xAxes: [ {
+               categoryPercentage: 0.9,
+               barPercentage: 0.5
+            }]
+          }})
     }, response => {
         console.error('Error')
     });
