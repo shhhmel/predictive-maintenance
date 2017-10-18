@@ -50,12 +50,12 @@
                                     <div class="tab-content" id="myCardTabContent">
                                         <div class="tab-pane fade show" id="ev" role="tabpanel" aria-labelledby="ev-tab">...</div>
                                         <div class="tab-pane fade show" id="ps" role="tabpanel" aria-labelledby="ps-tab">...</div>
-                                        <div class="tab-pane fade show active" id="tpr" role="tabpanel" aria-labelledby="tpr-tab">
+                                        <div class="tab-pane fade show active clearfix" id="tpr" role="tabpanel" aria-labelledby="tpr-tab">
                                             <h2>Open</h2>
-                                            <v-chart :direction="'Open'"></v-chart>
+                                            <v-chart :height="300" :direction="'Open'"></v-chart>
 
                                             <h2>Close</h2>
-                                            <v-chart :direction="'Close'"></v-chart>
+                                            <v-chart :height="300" :direction="'Close'"></v-chart>
                                         </div>
                                         <div class="tab-pane fade show" id="tt" role="tabpanel" aria-labelledby="tt-tab">...</div>
                                         <div class="tab-pane fade show" id="wor" role="tabpanel" aria-labelledby="wor-tab">...</div>
