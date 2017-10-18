@@ -6,7 +6,8 @@ export default {
   data() {
       return {
         someData: '',
-        data: [],
+        averageTorque: [],
+        lastTorque: [],
         labels: []
       }
   },
@@ -14,20 +15,28 @@ export default {
     this.$http.get('http://wb-predictivemaintenance-api.prsp7vkew2.eu-central-1.elasticbeanstalk.com/api/TorqueValues').then(response => {
         let count = 0;
         response.body.forEach(function(element) {
-            if (element.Direction == this.direction && count < 100 && element.AverageTorque) {
+            if (element.Direction == this.direction && count < 100 && element.AverageTorque && element.LastTorque ) {
                 this.labels.push(count);
-                this.data.push(element.AverageTorque);
+                this.averageTorque.push(element.AverageTorque);
+                this.lastTorque.push(element.LastTorque);
                 count++;
             }
         }, this);
 
         this.someData = {
             labels: this.labels,
-            datasets: [{
-                label: this.direction,
-                backgroundColor: '#f87979',
-                data: this.data
-            }]
+            datasets: [
+                {
+                    label: this.direction + ' Average Torque',
+                    backgroundColor: '#f87979',
+                    data: this.averageTorque
+                },
+                {
+                    label: this.direction + ' Last Torque',
+                    backgroundColor: 'blue',
+                    data: this.lastTorque
+                },
+            ]
         }
 
         this.renderChart(this.someData, {
